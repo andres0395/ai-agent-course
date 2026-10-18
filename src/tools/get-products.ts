@@ -67,3 +67,19 @@ export const getProduct = tool({
     };
   },
 });
+
+export const allProducts = tool({
+  description: "Obtiene todos los productos.",
+  inputSchema: z.object({}),
+  execute: async () => {
+    const productsRes = await db
+    .select()
+    .from(products)
+    .limit(1000);
+
+    return {
+      found:true,
+      products: productsRes,
+    };
+  },
+})
